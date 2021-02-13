@@ -1,0 +1,15 @@
+span.subj{
+    background-color: pink;
+}
+  
+span.verb{
+    background-color: yellow;
+}
+
+span.obj{
+    background-color: lightgreen;
+}
+
+span.aux{
+    background-color: lightgrey;
+}
