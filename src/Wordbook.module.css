@@ -1,0 +1,37 @@
+.wordUnit {
+  margin: 10px 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 5px grey;
+}
+  
+.wordWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.word {
+  flex:1;
+  vertical-align: middle;
+}
+  
+.meaning{
+  margin-left: 10vw;
+  font-size:small;
+  line-height: 120%;
+  vertical-align: middle;
+}
+  
+.sents {
+  background-color: #eeeeee;
+  margin: 5px 0px;
+  padding: 0px 5px;
+  font-size: 10pt;
+}
+
+.sent {
+  margin: 0px;
+  line-height: 150%;
+}

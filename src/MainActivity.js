@@ -1,31 +1,14 @@
 import React from 'react';
-import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
+import {Route, Link, Switch, Redirect} from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import HomeIcon from '@material-ui/icons/Home';
+import BookshelfIcon from '@material-ui/icons/LocalLibrary';
+import WordbookIcon from '@material-ui/icons/Favorite';
 import Home from './Home.js';
 import Wordbook from './Wordbook.js';
 import BookShelf from './BookShelf.js';
-import {ReactComponent as IconHome} from './icon-home.svg';
-// import IconBookshelf from './icon-bookshelf.svg';
-// import IconWordbook from './icon-wordbook.svg';
-
-const BottomNavSelected = {
-    color: "red",
-};
-
-const BottomPadding = {
-    height:"10vh",
-};
-
-const BottomNavBar = {
-    // backgroundColor: white,
-    display:"flex",
-    position:"fixed",
-    bottom:"0",
-    left:"0",
-    width:"100%",
-    height:"10vh",
-    padding: "5px 0",
-    borderTop: "1px solid black",
-};
 
 function MainActivity() {
     return (
@@ -37,14 +20,30 @@ function MainActivity() {
                     <Route path="/" component={Home}/>
                 </Switch>
             </div>
-            <div style={BottomPadding}></div>
-            <div style={BottomNavBar}>
-                <NavLink to="/home" activeStyle={BottomNavSelected}><IconHome  height="70%"/></NavLink>
-                <NavLink to="/bookshelf" activeStyle={BottomNavSelected}>내책</NavLink>
-                <NavLink to="/wordbook" activeStyle={BottomNavSelected}>단어장</NavLink>
-            </div>
+            <SimpleBottomNavigation />
         </div>
     );
+}
+
+const useStyles = makeStyles({
+  root: {
+    width: "100vw",
+    position: "fixed",
+    bottom:0,    
+  },
+});
+
+function SimpleBottomNavigation() {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  return (
+    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); }} showLabels className={classes.root} >
+      <BottomNavigationAction component={Link} to="/home" label="Home" icon={<HomeIcon />} />
+      <BottomNavigationAction component={Link} to="/BookShelf" label="BookShelf" icon={<BookshelfIcon />} />
+      <BottomNavigationAction component={Link} to="/Wordbook" label="Wordbook" icon={<WordbookIcon />} />
+    </BottomNavigation>
+  );
 }
 
 export default MainActivity;

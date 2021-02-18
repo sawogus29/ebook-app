@@ -1,0 +1,34 @@
+.bookList{
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px grey;
+    margin: 10px 10px;
+    padding: 0px 5px;
+}
+
+.bookUnit{
+    display:flex;
+    border-top: 1px solid grey;
+    padding: 5px 10px;
+}
+
+.noLink{
+    text-decoration: none;
+    color:inherit;
+}
+
+.thumbnail {
+    width: 10vw;
+    height: 15vw;
+}
+
+.descWrapper {
+    flex:1;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author {
+    
+}

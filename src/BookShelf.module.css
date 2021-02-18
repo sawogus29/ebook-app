@@ -1,0 +1,36 @@
+.bookList{
+    width:100%;
+    display:grid;
+    grid-template-columns: repeat(3, minmax(100px,1fr));
+}
+
+.bookUnit{
+    margin: 10px 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px grey;
+    padding: 0px 5px;
+    text-decoration: none;
+}
+
+.noLink{
+    text-decoration: none;
+    color:inherit;
+}
+
+.thumbnail {
+    width: 10vw;
+    height: 15vw;
+}
+
+.descWrapper {
+    overflow:hidden;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.author {
+    
+}

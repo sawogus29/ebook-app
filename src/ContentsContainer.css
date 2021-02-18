@@ -1,0 +1,41 @@
+.color-reader[data-subj] .sent[data-color] > span.subj, .lb_subj{
+    background-color: pink;
+  }
+  .color-reader[data-verb] .sent[data-color] > span.verb, .lb_verb{
+    background-color: yellow;
+  }
+  .color-reader[data-obj] .sent[data-color] > span.obj, .lb_obj{
+    background-color: lightgreen;
+  }
+  .color-reader[data-comp] .sent[data-color] > span.comp, .lb_comp{
+    background-color: lightskyblue;
+  }
+  .color-reader[data-aux] .sent[data-color] > span.aux, .lb_aux{
+    color: #555555;
+    border-radius:1em;
+    padding-left:1px;
+    padding-right:1px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+  }
+  
+  /* .sent[data-color] > span.aux::before{
+    content:"{";
+  }
+  .sent[data-color] > span.aux::after{
+    content:"}";
+  } */
+  
+  .color-reader[data-aux][data-subj] .sent[data-color] .aux .subj{
+    color:black;
+    text-shadow: 0 0 3px pink;
+  }
+  .color-reader[data-aux][data-verb] .sent[data-color] .aux .verb{
+    text-shadow: 0 0 3px yellow;
+  }
+  .color-reader[data-aux][data-obj] .sent[data-color] .aux .obj{
+    text-shadow: 0 0 3px lightgreen;
+  }
+  .color-reader[data-chk-aux][data-chk-comp] .sent[data-color] .aux .comp{
+    text-shadow: 0 0 3px lightblue;
+  }

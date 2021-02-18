@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import style from './Wordbook.module.css';
+import Top from './Top.js'
+
 async function getWordsData(){
     return [
         {word:"hello", meaning:"안녕", sents:["hello jaehyeon"]},
@@ -17,6 +20,7 @@ function Wordbook(){
         });
     }, []);
     return (<div>
+        <Top title="단어장"/>
         <WordList words={words}/>
     </div>);
 }
@@ -32,13 +36,13 @@ function WordList({words}){
 
 function WordUnit({wordUnit}){
     return (
-        <div>
-            <div>
-                <div>{wordUnit.word}</div>
-                <div>{wordUnit.meaning}</div>
+        <div className={`${style.wordUnit}`}>
+            <div className={`${style.wordWrapper}`}>
+                <div className={`${style.word}`}>{wordUnit.word}</div>
+                <div className={`${style.wrapper}`}>{wordUnit.meaning}</div>
             </div>
-            <div>
-                {wordUnit.sents.map((sent)=><p>{sent}</p>)}
+            <div className={`${style.sents}`}>
+                {wordUnit.sents.map((sent)=><p className={`${style.sent}`}>{sent}</p>)}
             </div>
         </div>
     )
