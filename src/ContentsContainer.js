@@ -1,13 +1,28 @@
 import React, {useState, useEffect, useRef} from 'react';
 import './ContentsContainer.css';
+import cn from 'classnames';
+import {makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+    root: (textFormat)=>({
+        fontFamily: `${textFormat.font}`,
+        fontSize: `${textFormat.fontSize}pt`,
+        lineHeight: `${textFormat.lineHeight}`,
+        padding: "0 10px",
+        textAlign: "justify",
+    }),
+});
 
 function ContentsContainer({
     contents, onClick, onDblClick, 
-    colorize=true, colorFormat,
+    colorize=true, colorFormat, textFormat
     }){
     const timeoutRef = useRef();
     const isFirstTapRef = useRef();
     const isMovedRef = useRef();
+    const classes = useStyles(textFormat);
+    // console.log(textFormat);
+    // console.log(classes.root);
     
     function onTouchStart(evt){
         console.log("onTouchStart");
@@ -59,7 +74,7 @@ function ContentsContainer({
         }
     },[colorReaderRef, colorize, colorFormat]);
     
-    return (<div>
+    return (<div className={cn(classes.root)}>
         <div ref={colorReaderRef} className="color-reader"
         onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} 
         dangerouslySetInnerHTML={{__html: contents}}></div> 

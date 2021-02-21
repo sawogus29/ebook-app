@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import style from './Wordbook.module.css';
 import Top from './Top.js'
+import firebase from 'firebase';
 
 async function getWordsData(){
-    return [
-        {word:"hello", meaning:"안녕", sents:["hello jaehyeon"]},
-        {word:"world", meaning:"세계", sents:["hello world"]},
-    ];
+    const userId = "jaehyeon";
+    const wordRef = firebase.database().ref(`users/${userId}/words/`);
+    const snapshot = await wordRef.orderByChild('time').once('value');
+    
+    // console.log(snapshot.val());
+    // console.log(Object.values(snapshot.val()));
+
+    return Object.values(snapshot.val()); // .map((aWord)=>{
+    //     const {word, meaning, sents} = aWord;
+    //     const newSents = sents.map((aSent)=>(aSent.sent));
+    //     console.log(newSents);
+    //     return {word, meaning, sent:newSents};
+    // });
+
+    // return [
+    //     {word:"hello", meaning:"안녕", sents:["hello jaehyeon"]},
+    //     {word:"world", meaning:"세계", sents:["hello world"]},
+    // ];
 }
 
 function Wordbook(){
@@ -39,10 +54,10 @@ function WordUnit({wordUnit}){
         <div className={`${style.wordUnit}`}>
             <div className={`${style.wordWrapper}`}>
                 <div className={`${style.word}`}>{wordUnit.word}</div>
-                <div className={`${style.wrapper}`}>{wordUnit.meaning}</div>
+                <div className={`${style.meaning}`}>{wordUnit.meaning}</div>
             </div>
             <div className={`${style.sents}`}>
-                {wordUnit.sents.map((sent)=><p className={`${style.sent}`}>{sent}</p>)}
+                {wordUnit.sents.map((aSent, i)=><p key={i} className={`${style.sent}`}>{aSent.sent}</p>)}
             </div>
         </div>
     )

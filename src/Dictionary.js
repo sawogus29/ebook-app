@@ -37,7 +37,7 @@ export default function Dictionary({word, onClose}) {
 
   return (
   <Dialog
-    open={word && true}
+    open={word != null && word != ""}
     TransitionComponent={Transition}
     keepMounted
     onClose={handleClose}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link, Switch, Redirect} from 'react-router-dom';
+import {Route, Link, Switch, Redirect, useLocation, useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
@@ -31,19 +31,29 @@ const useStyles = makeStyles({
     position: "fixed",
     bottom:0,    
   },
+  dummy:{
+    width: "100vw",
+    position: "static",
+  }
 });
 
 function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const history = useHistory();
+  const location = useLocation();
+  const navData = ['home', 'BookShelf', 'Wordbook'];
+  const current = location.pathname.split('/').slice(-1)[0];
+  const currentIndex = navData.indexOf(current) < 0? 0: navData.indexOf(current);
+  const [value, setValue] = React.useState(currentIndex);
 
-  return (
-    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); }} showLabels className={classes.root} >
-      <BottomNavigationAction component={Link} to="/home" label="Home" icon={<HomeIcon />} />
-      <BottomNavigationAction component={Link} to="/BookShelf" label="BookShelf" icon={<BookshelfIcon />} />
-      <BottomNavigationAction component={Link} to="/Wordbook" label="Wordbook" icon={<WordbookIcon />} />
+  return (<>
+    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); history.replace(`/${navData[newValue]}`);}} showLabels className={classes.root} >
+      <BottomNavigationAction label="Home" icon={<HomeIcon />} />
+      <BottomNavigationAction label="BookShelf" icon={<BookshelfIcon />} />
+      <BottomNavigationAction label="Wordbook" icon={<WordbookIcon />} />
     </BottomNavigation>
-  );
+    <BottomNavigation className={classes.dummy}/>
+  </>);
 }
 
 export default MainActivity;

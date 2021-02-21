@@ -23,7 +23,7 @@ export default function Top({title, arrowBack, render}) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed" color="default" elevation={2}>
         <Toolbar>
           { arrowBack && 
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -36,6 +36,7 @@ export default function Top({title, arrowBack, render}) {
           {render}
         </Toolbar>
       </AppBar>
+      <Toolbar position="static"></Toolbar>
     </div>
   );
 }
