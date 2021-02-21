@@ -2,33 +2,20 @@ import React, {useState, useEffect, useRef} from 'react';
 import './ContentsContainer.css';
 
 function ContentsContainer({
-    contents, onClick, onDblClick, onScrollUp, onScrollDown, 
+    contents, onClick, onDblClick, 
     colorize=true, colorFormat,
     }){
-    const lastYRef = useRef();
     const timeoutRef = useRef();
     const isFirstTapRef = useRef();
     const isMovedRef = useRef();
     
     function onTouchStart(evt){
         console.log("onTouchStart");
-        // Scroll Detection
-        lastYRef.current = evt.touches[0].screenY;
         // Double Tap Detection
         window.clearTimeout(timeoutRef.current);
     }
     
     function onTouchMove(evt){
-        // console.log("onTouchMove");
-        // Scroll Detection
-        if (lastYRef.current - evt.touches[0].screenY < 0){
-            console.log("scroll up");
-            onScrollUp();
-        }else{
-            console.log("scroll down");
-            onScrollDown();
-        }
-        lastYRef.current = evt.touches[0].screenY;
         // Double Tap Detection
         window.clearTimeout(timeoutRef.current);
         isMovedRef.current = true;
@@ -36,8 +23,6 @@ function ContentsContainer({
     
     function onTouchEnd(evt){
         console.log("onTouchEnd");
-        // Scroll Detection
-        lastYRef.current = null;
         // Double Tap Detection
         if(isMovedRef.current){isMovedRef.current=false; isFirstTapRef.current=true; return;}
 
