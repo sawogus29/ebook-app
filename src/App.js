@@ -11,7 +11,7 @@ function App(){
         <CssBaseline/>
         <BrowserRouter>
             <Switch>
-                <Route path="/reader" component={Reader}></Route>
+                <Route path="/reader/:id" component={Reader}></Route>
                 <Route path="/" component={MainActivity}></Route>
             </Switch>
         </BrowserRouter>

@@ -3,6 +3,8 @@ import {Route, Link, Switch, Redirect, useLocation, useHistory} from 'react-rout
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import HomeIcon from '@material-ui/icons/Home';
 import BookshelfIcon from '@material-ui/icons/LocalLibrary';
 import WordbookIcon from '@material-ui/icons/Favorite';
@@ -47,11 +49,14 @@ function SimpleBottomNavigation() {
   const [value, setValue] = React.useState(currentIndex);
 
   return (<>
-    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); history.replace(`/${navData[newValue]}`);}} showLabels className={classes.root} >
+    <Paper className={classes.root}>
+    <Divider />
+    <BottomNavigation value={value} onChange={(event, newValue) => { setValue(newValue); history.replace(`/${navData[newValue]}`);}} showLabels >
       <BottomNavigationAction label="Home" icon={<HomeIcon />} />
       <BottomNavigationAction label="BookShelf" icon={<BookshelfIcon />} />
       <BottomNavigationAction label="Wordbook" icon={<WordbookIcon />} />
     </BottomNavigation>
+    </Paper>
     <BottomNavigation className={classes.dummy}/>
   </>);
 }

@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +24,7 @@ export default function Top({title, arrowBack, render}) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" color="default" elevation={2}>
+      <AppBar position="fixed" color="inherit" elevation={1}>
         <Toolbar>
           { arrowBack && 
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">

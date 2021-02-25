@@ -56,53 +56,12 @@ function SimpleDialog(props) {
 
     return (
       <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-        <DialogTitle>서식</DialogTitle>
-        <DialogContent>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="setting-font-label">글꼴</InputLabel>
-            <Select
-              labelId="setting-font-label"
-              id="setting-font"
-              value={textSelects.font}
-              onChange={(evt)=>{setTextSelects((prev)=>({...prev,font:evt.target.value}))}}
-            >
-              {textFormatRanges.font.map((item)=>{
-                return <MenuItem value={item}>{item}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="setting-fontSize-label">글자크기</InputLabel>
-            <Select
-              labelId="setting-fontSize-label"
-              id="setting-fontSize"
-              value={textSelects.fontSize}
-              onChange={(evt)=>{setTextSelects((prev)=>({...prev,fontSize:evt.target.value}))}}
-            >
-              {textFormatRanges.fontSize.map((item)=>{
-                return <MenuItem value={item}>{item}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-          <FormControl className={classes.formControl}>
-            <InputLabel id="setting-lineHeight-label">줄간격</InputLabel>
-            <Select
-              labelId="setting-lineHeight-label"
-              id="setting-lineHeight"
-              value={textSelects.lineHeight}
-              onChange={(evt)=>{setTextSelects((prev)=>({...prev,lineHeight:evt.target.value}))}}
-            >
-              {textFormatRanges.lineHeight.map((item)=>{
-                return <MenuItem value={item}>{item}</MenuItem>
-              })}
-            </Select>
-          </FormControl>
-        </DialogContent>
         <DialogTitle>문장구조분석</DialogTitle>
         <DialogContent>
           <FormGroup row>
-            {Object.keys(colorChecks).map((key)=>{
+            {Object.keys(colorChecks).map((key, i)=>{
               return <FormControlLabel
+                key={i}
                 control={<Checkbox 
                   checked={colorChecks[key]} 
                   onChange={evt=>setColorChecks(
@@ -116,6 +75,48 @@ function SimpleDialog(props) {
               />;
             })}
           </FormGroup>
+        </DialogContent>
+        <DialogTitle>서식</DialogTitle>
+        <DialogContent>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="setting-font-label">글꼴</InputLabel>
+            <Select
+              labelId="setting-font-label"
+              id="setting-font"
+              value={textSelects.font}
+              onChange={(evt)=>{setTextSelects((prev)=>({...prev,font:evt.target.value}))}}
+            >
+              {textFormatRanges.font.map((item, i)=>{
+                return <MenuItem key={i} value={item}>{item}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="setting-fontSize-label">글자크기</InputLabel>
+            <Select
+              labelId="setting-fontSize-label"
+              id="setting-fontSize"
+              value={textSelects.fontSize}
+              onChange={(evt)=>{setTextSelects((prev)=>({...prev,fontSize:evt.target.value}))}}
+            >
+              {textFormatRanges.fontSize.map((item, i)=>{
+                return <MenuItem key={i} value={item}>{item}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="setting-lineHeight-label">줄간격</InputLabel>
+            <Select
+              labelId="setting-lineHeight-label"
+              id="setting-lineHeight"
+              value={textSelects.lineHeight}
+              onChange={(evt)=>{setTextSelects((prev)=>({...prev,lineHeight:evt.target.value}))}}
+            >
+              {textFormatRanges.lineHeight.map((item, i)=>{
+                return <MenuItem key={i} value={item}>{item}</MenuItem>
+              })}
+            </Select>
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button onClick={()=>(handleClose(true))}>확인</Button>

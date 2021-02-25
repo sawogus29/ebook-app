@@ -3,19 +3,19 @@ import {Link} from 'react-router-dom';
 import Top from './Top.js';
 import cn from 'classnames';
 // import style from './Home.module.css';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, Divider, makeStyles, Typography } from '@material-ui/core';
 import {useHistory} from 'react-router-dom';
 import firebase from 'firebase';
 
 async function getData(){
-    const bookMetaRef = firebase.database().ref('/book-meta');
+    const bookMetaRef = firebase.database().ref('book-metas/');
     const bookMetas = await bookMetaRef.once('value');
-    console.log(bookMetas);
-    // return Object.values(bookMetas);
-    return [
-        {title:"sherlock", author:"Conan", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"1"},
-        {title:"PrideAndPrejudice", author:"Jane", thumnail:"", id:"2"},
-    ];
+    // console.log(Object.values(bookMetas.val()))
+    return Object.values(bookMetas.val());
+    // return [
+    //     {title:"The Adventures of Sherlock Holmes", author:"Arthur Conan Doyle", thumnail:"https://www.gutenberg.org/cache/epub/1661/pg1661.cover.medium.jpg", id:"1"},
+    //     {title:"Pride And Prejudice", author:"Jane Austen", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"2"},
+    // ];
 }
 
 function Home(){
@@ -41,8 +41,9 @@ const useStyles = makeStyles({
     },
     bookUnit:{
         display:"flex",
-        borderTop: "1px solid grey",
+        // borderTop: "1px solid grey",
         padding: "5px 10px",
+        alignItems: "center",
     },
     thumbnail: {
         flex:0,
@@ -54,7 +55,9 @@ const useStyles = makeStyles({
         flex:1,
     },
     title: {
-        fontWeight: "bold",
+        // fontWeight: "bold",
+        lineHeight: 1.2,
+        marginBottom: '0.5em',
     },
     author: {
     },
@@ -63,7 +66,10 @@ const useStyles = makeStyles({
 function BookList({books}){
     const classes = useStyles();
     return (<div className={cn(classes.bookList)}>
-        {books.map((book)=><BookUnit key={book.title} book={book}/>)}
+        {books.map((book, i)=><React.Fragment key={book.id}>
+            {i>0 && <Divider/>}
+            <BookUnit key={book.title} book={book}/>
+        </React.Fragment>)}
     </div>);
 }
 
@@ -73,7 +79,7 @@ function BookUnit({book}){
     return (<div className={cn(classes.bookUnit)} onClick={()=>history.push(`/reader/${book.id}`)}>
         <img className={cn(classes.thumbnail)} src={book.thumnail} alt="thumbnail"></img>
         <div className={cn(classes.descWrapper)}>
-            <Typography variant="subtitle1" color="initial">{book.title}</Typography>
+            <Typography variant="subtitle1" color="initial" className={classes.title}>{book.title}</Typography>
             <Typography variant="subtitle2" color="initial">{book.author}</Typography>
             {/* <div className={cn(classes.title)}>{book.title}</div>
             <div className={cn(classes.author)}>{book.author}</div> */}

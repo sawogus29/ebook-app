@@ -28,9 +28,9 @@ const useStyles = makeStyles((theme) => ({
     //   textOverflow: "ellipsis",
     //   whiteSpace: "nowrap",
   },
-  noLink: {
-    textDecoration: "none",
-    color: "inherit",
+  content: {
+    // backgroundColor: 'rgba(0,0,0,0.5)',
+    // opacity: 0.5,
   },
   media: {
     height: 0,
@@ -41,12 +41,7 @@ const useStyles = makeStyles((theme) => ({
 
 async function getData(){
     return [
-        {title:"zzzzzzzz", author:"Conan", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"1"},
-        {title:"ddddddd ddddddd", author:"Jane", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"2"},
-        {title:"zzzzzzzz", author:"Arthur Conan Doil", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"3"},
-        {title:"zzzzzzzz", author:"Conan", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"4"},
-        {title:"dddddddddddddd", author:"Jane", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"5"},
-        {title:"dddddddddddddd", author:"Jane", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"6"},
+        {title:"Pride And Prejudice", author:"Jane Austen", thumnail:"http://www.gutenberg.org/cache/epub/1342/pg1342.cover.small.jpg", id:"2"},
     ];
 }
 
@@ -89,7 +84,7 @@ function BookUnit({book}) {
             className={classes.media}
             image={book.thumnail}
           />
-          <CardContent>
+          <CardContent className={classes.content}>
               <Typography component="div" variant="h6" color="initial" className={classes.wrap}>{book.title}</Typography>
             <Typography component="div" variant="body1" color="initial" className={classes.wrap}>{book.author}</Typography>
           </CardContent>

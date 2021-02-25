@@ -6,22 +6,43 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
+import firebase from 'firebase';
+import axios from 'axios';
 
 async function getMeaning(word){
-    return word + " meaning";
+  /* [{meanings, phonetic, word}] */
+  console.log(word);
+  const res = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`)
+  console.log(res.data);
+  const resWord = res.data[0].word;
+  const resMeaning = res.data[0].meanings[0].definitions[0].definition;
+  return {resWord, resMeaning};
+}
+
+function saveWord(data){
+  console.log(data);
+  const {word, meaning, sent, offset, src} = data;
+  const userId = "jaehyeon";
+  const wordRef = firebase.database().ref(`users/${userId}/words/`);
+
+  if(userId.length == 0){ return; }
+
+  wordRef.child(word).set({
+    word: word,
+    meaning: meaning,
+    sents: [{sent:sent, offset:offset, src:src}],
+    time: firebase.firestore.Timestamp.now().seconds
+  });
+  console.log(word +' saved');
 }
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Dictionary({word, onClose}) {
-//   const [open, setOpen] = React.useState(false);
-  const [meaning, setMeaning] = React.useState("");
-
-  const handleClickOpen = () => {
-    // setOpen(true);
-  };
+export default function Dictionary({isDictOpen, dictQuery, onClose}) {
+  const [word, setWord] = useState(dictQuery.word);
+  const [meaning, setMeaning] = useState("searching...");
 
   const handleClose = () => {
     onClose();
@@ -29,15 +50,41 @@ export default function Dictionary({word, onClose}) {
   };
     
   useEffect(() => {
-    getMeaning(word)
-    .then((data)=>{
-        setMeaning(data);
-    });
-  },[word])
+    function onSuccess(data){
+      const {resWord, resMeaning} = data;
+      setWord(resWord);
+      setMeaning(resMeaning);
+      saveWord({
+        ...dictQuery,
+        word:resWord, 
+        meaning:resMeaning, 
+      });
+    }
+
+    function searchWord(){
+      dictQuery.word &&
+      getMeaning(dictQuery.word)
+      .then(onSuccess)
+      .catch(()=>{
+        setMeaning("request failed");
+      });
+    }
+
+    if(dictQuery.mwe){
+      getMeaning(dictQuery.mwe)
+      .then(onSuccess)
+      .catch((err)=>{
+        console.log({mew: dictQuery.mwe, err});
+        searchWord();
+      });
+    }else{
+      searchWord();
+    }
+  },[dictQuery]);
 
   return (
   <Dialog
-    open={word != null && word != ""}
+    open={isDictOpen}
     TransitionComponent={Transition}
     keepMounted
     onClose={handleClose}

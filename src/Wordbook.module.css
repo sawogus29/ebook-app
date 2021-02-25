@@ -15,6 +15,7 @@
 .word {
   flex:1;
   vertical-align: middle;
+  font-weight: bold;
 }
   
 .meaning{
@@ -34,4 +35,10 @@
 .sent {
   margin: 0px;
   line-height: 150%;
+  font-style: oblique;
+}
+
+.src {
+  text-align: end;
+  margin:0;
 }
