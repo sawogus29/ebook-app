@@ -1,8 +1,8 @@
-# E-book using NLP (Aborted)
+# English E-book with NLP (Aborted)
 **This project has been aborted since Feb 2021.**
 
 
-'E-book using NLP' is an e-book webapp, which helps english learners to read english books more easily (with help of NLP).
+'English E-book with NLP' is an e-book webapp, which helps english learners to read english books more easily (with help of NLP).
 
 You can try it [here](https://ebookapp-sawogus29.netlify.app/) (mobile recommended).
 
