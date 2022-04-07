@@ -1,5 +1,5 @@
 # English E-book with NLP (Aborted)
-**This project has been aborted since Feb 2021.**
+**This project is incomplete (aborted since Feb 2021).**
 
 
 'English E-book with NLP' is an e-book webapp, which helps english learners to read english books more easily (with help of NLP).
