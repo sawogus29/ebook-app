@@ -17,7 +17,7 @@ You can try it [here](https://ebookapp-sawogus29.netlify.app/) (mobile recommend
 ## Links
 - Demo (mobile recommended): https://ebookapp-sawogus29.netlify.app/
 - Subproject (nlp-demo): https://github.com/sawogus29/nlp-demo
-- Development history (in Korean): https://velog.io/@sawogus29/nlp-english-ebook
+- Development history (개발 기록, in Korean): https://velog.io/@sawogus29/nlp-english-ebook
 
 ## Dependencies
 - React 18+
