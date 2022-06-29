@@ -17,7 +17,9 @@ You can try this [DEMO](https://ebookapp-sawogus29.netlify.app/) (mobile recomme
 ## Links
 - Demo (mobile recommended): https://ebookapp-sawogus29.netlify.app/
 - Subproject (nlp-demo): https://github.com/sawogus29/nlp-demo
+![image](https://user-images.githubusercontent.com/37795048/162201264-c166fcb5-4506-4cfa-ac72-6a42feb8bfd3.png)
 - Development history (개발 기록, in Korean): https://velog.io/@sawogus29/nlp-english-ebook
 
 ## Dependencies
 - React 18+
+- MaterialUI 4.0+
