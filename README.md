@@ -4,7 +4,7 @@
 
 'English E-book with NLP' is an e-book webapp, which helps english learners to read english books more easily (with help of NLP).
 
-You can try it [here](https://ebookapp-sawogus29.netlify.app/) (mobile recommended).
+You can try this [DEMO](https://ebookapp-sawogus29.netlify.app/) (mobile recommended).
 
 ![image](https://user-images.githubusercontent.com/37795048/162207604-f139b80e-c1b9-4e8a-a988-30ff01871368.png)
 
